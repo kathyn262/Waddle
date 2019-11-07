@@ -3,6 +3,7 @@ import os
 from flask import Flask, render_template, request, flash, redirect, session, g
 from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import or_
 
 from forms import UserAddForm, LoginForm, MessageForm, EditProfileForm
 from models import db, connect_db, User, Message, Like
@@ -229,7 +230,8 @@ def profile():
             g.user.email = form.email.data,
             g.user.image_url = form.image_url.data or User.image_url.default.arg,
             g.user.header_image_url = form.header_image_url.data,
-            g.user.bio = form.bio.data
+            g.user.bio = form.bio.data,
+            g.user.location = form.location.data
 
             db.session.commit()
             return redirect(f'/users/{g.user.id}')
@@ -370,7 +372,7 @@ def homepage():
 
         messages = (Message
                     .query
-                    .filter(Message.user_id.in_(following_ids))
+                    .filter(or_(Message.user_id.in_(following_ids), Message.user_id == g.user.id))
                     .order_by(Message.timestamp.desc())
                     .limit(100)
                     .all())
