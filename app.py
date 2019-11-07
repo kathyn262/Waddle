@@ -357,7 +357,7 @@ def unlike_message(message_id):
 # Homepage and error pages
 
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def homepage():
     """Show homepage:
 
@@ -368,6 +368,16 @@ def homepage():
     # if CURR_USER_KEY not in session:
     if g.user:
 
+        form = MessageForm()
+
+        if form.validate_on_submit():
+            msg = Message(text=form.text.data)
+            g.user.messages.append(msg)
+            db.session.add(g.user)
+            db.session.commit()
+
+            return redirect("/")
+
         following_ids = [f.id for f in g.user.following]
 
         messages = (Message
@@ -377,7 +387,7 @@ def homepage():
                     .limit(100)
                     .all())
 
-        return render_template('home.html', messages=messages)
+        return render_template('home.html', messages=messages, form=form)
 
     else:
         return render_template('home-anon.html')

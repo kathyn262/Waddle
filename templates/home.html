@@ -37,7 +37,23 @@
   </aside>
 
   <div class="col-lg-6 col-md-8 col-sm-12">
-    <ul class="list-group" id="messages">
+
+    <form method="POST">
+      {{ form.csrf_token }}
+      <div>
+        {% if form.text.errors %}
+        {% for error in form.text.errors %}
+        <span class="text-danger">
+          {{ error }}
+        </span>
+        {% endfor %}
+        {% endif %}
+        {{ form.text(placeholder="What's happening?", class="form-control", rows="3") }}
+      </div>
+      <button class="btn btn-outline-primary btn-block">Post</button>
+    </form>
+
+    <ul class="list-group home-message-list" id="messages">
       {% for msg in messages %}
       <li class="list-group-item">
         <a href="/messages/{{ msg.id  }}" class="message-link" />
