@@ -12,13 +12,6 @@ body.error-404 {
   margin-bottom: 20px;
 }
 
-form {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  filter: drop-shadow(-4px 0px 3px rgba(43, 43, 43, 0.3));
-}
-
 .btn {
   border-radius: 50px;
 }
@@ -471,6 +464,13 @@ p.card-bio {
 }
 
 /* ========================== Signup/Login */
+
+#user_form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  filter: drop-shadow(-4px 0px 3px rgba(43, 43, 43, 0.3));
+}
 
 #user_form input.form-control {
   font-size: 18px;
