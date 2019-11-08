@@ -4,6 +4,10 @@ Waddle is a Twitter clone built with Flask, server-side rendering, and Jinja tem
 
 Unit and integration tests are written with the Python standard library unittest module. Passwords are encrypted and stored in the database.  
 
+![Demo Gif](static/images/demo.gif)
+![Edit Profile Form Screenshot](static/images/profile-edit-screenshot.png)
+![404 Page Screenshot](static/images/404-screenshot.png)
+
 ## Installation 
 
 These steps should be done sequentially. 
