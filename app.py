@@ -373,7 +373,6 @@ def homepage():
         if form.validate_on_submit():
             msg = Message(text=form.text.data)
             g.user.messages.append(msg)
-            db.session.add(g.user)
             db.session.commit()
 
             return redirect("/")
