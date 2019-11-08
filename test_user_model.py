@@ -7,8 +7,7 @@
 
 import os
 from unittest import TestCase
-from sqlalchemy.exc import IntegrityError
-from models import db, User, Message, Follows, bcrypt
+from models import db, User, Message, Follows
 
 # BEFORE we import our app, let's set an environmental variable
 # to use a different database for tests (we need to do this
@@ -35,22 +34,8 @@ class UserModelTestCase(TestCase):
     def setUp(self):
         """Create test client, add sample data."""
 
-        User.query.delete()
-        Message.query.delete()
-        Follows.query.delete()
-
         self.client = app.test_client()
         # seed_data()
-
-        u_two = User.signup(
-            email="test2@test.com",
-            username="testuserasDASKD",
-            password=PASSWORD,
-            image_url=None
-        )
-        u_two.id = 2
-        db.session.add(u_two)
-        db.session.commit()
 
         u = User.signup(
             email="test@test.com",
@@ -62,9 +47,29 @@ class UserModelTestCase(TestCase):
         db.session.add(u)
         db.session.commit()
 
+        u_two = User.signup(
+            email="test2@test.com",
+            username="testuserasDASKD",
+            password=PASSWORD,
+            image_url=None
+        )
+        u_two.id = 2
+        db.session.add(u_two)
+        db.session.commit()
+
         test_follow = Follows(user_being_followed_id=u.id,
                               user_following_id=u_two.id)
         db.session.add(test_follow)
+        db.session.commit()
+
+    def tearDown(self):
+        """Clear sample data after each test."""
+        
+        User.query.delete()
+        db.session.commit()
+        Message.query.delete()
+        db.session.commit()
+        Follows.query.delete()
         db.session.commit()
 
     def test_user_model(self):
