@@ -383,6 +383,14 @@ p.card-bio {
   margin: 2em 10px 0;
 }
 
+.following-header {
+  margin-left: 15px;
+}
+
+.followers-header {
+  margin-left: 15px;
+}
+
 /* ============================ Signed out home */
 
 .home-hero {
