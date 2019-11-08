@@ -39,7 +39,6 @@ Testing the user model:
 
 ```
 python -m unittest test_user_model.py
-
 ```
 
 Testing user views: 
