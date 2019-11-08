@@ -528,20 +528,12 @@ p.card-bio {
 
 /* ================================ 404 page */
 
-.message-404 {
-  color: white;
-  margin-top: 2em;
+.around-404-pre {
+  display: block; 
   text-align: center;
 }
 
-.message-404 a {
-  color: white;
-}
-
-.message-404 > h4.display-4 {
-  font-size: 2.5em;
-}
-
-.message-404 .form-inline input {
-  flex: 1;
+.error-404-pre {
+  display: inline-block;
+  text-align: left;
 }
