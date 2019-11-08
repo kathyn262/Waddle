@@ -16,7 +16,22 @@
             <a href="/users/{{ user.id }}">@{{ user.username }}</a>
             <span class="text-muted">{{ message.timestamp.strftime('%d %B %Y') }}</span>
             <p>{{ message.text }}</p>
+            {% if message in g.user.liked_messages %}
+            <form method="POST" action="/messages/{{ message.id }}/unlike">
+              <a href="#" onclick="this.parentNode.submit()">
+                <i class="fas fa-star"></i>
+              </a>
+            </form>
+  
+            {% else %}
+            <form method="POST" action="/messages/{{ message.id }}/like">
+              <a href="#" onclick="this.parentNode.submit()">
+                <i class="far fa-star"></i>
+              </a>
+            </form>
+            {% endif %}
           </div>
+
         </li>
 
       {% endfor %}
