@@ -1,13 +1,7 @@
-
-
-
 import os
 from unittest import TestCase
-from sqlalchemy.exc import IntegrityError
-from models import db, User, Message, Follows, bcrypt
+from models import db, User, Message, Follows
 from datetime import datetime
-from flask import Flask, render_template, request, flash, redirect, session, g
-# import request
 
 # BEFORE we import our app, let's set an environmental variable
 # to use a different database for tests (we need to do this
@@ -34,10 +28,6 @@ class MessageModelTestCase(TestCase):
         """Create test client, add sample data."""
         app.config['TESTING'] = True
         app.config['WTF_CSRF_ENABLED'] = False
-
-        User.query.delete()
-        Message.query.delete()
-        Follows.query.delete()
 
         self.client = app.test_client()
 
@@ -80,6 +70,16 @@ class MessageModelTestCase(TestCase):
 
         self.message = test_message
 
+    def tearDown(self):
+        """Clear sample data after each test."""
+
+        User.query.delete()
+        db.session.commit()
+        Message.query.delete()
+        db.session.commit()
+        Follows.query.delete()
+        db.session.commit()
+
     def test_view_following(self):
         """Test to see if you can see following pages when logged in."""
 
@@ -89,11 +89,12 @@ class MessageModelTestCase(TestCase):
             resp = client.get(f'users/{self.user.id}/following')
             html = resp.get_data(as_text=True)
             self.assertEqual(resp.status_code, 200)
-            self.assertIn('<div class="col-lg-4 col-md-6 col-12" id="following_cards">',
+            self.assertIn('<h3 class="following-header">Following</h3>',
                           resp.data.decode('utf-8'))
 
     def test_logged_out_visiting(self):
-        """Test to see if you are prevented from viewing a user's follower/following page if you are not logged in"""
+        """Test to see if you are prevented from viewing a user's
+        follower/following page if you are not logged in"""
 
         with app.test_client() as client:
             resp = client.get(
@@ -156,6 +157,7 @@ class MessageModelTestCase(TestCase):
     
     def test_add_msg_as_another(self):
         """Testing to see if you can add message as another user."""
+        
         with app.test_client() as client:
             with client.session_transaction() as sess:
                 sess[CURR_USER_KEY] = self.user.id
