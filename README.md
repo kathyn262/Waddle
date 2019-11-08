@@ -38,20 +38,21 @@ The following commands should be run within the virtual environment.
 Testing the user model: 
 
 ```
-FLASK_ENV=production python -m unittest test_user_model.py
+python -m unittest test_user_model.py
+
 ```
 
 Testing user views: 
 ```
-FLASK_ENV=production python -m unittest test_user_views.py
+python -m unittest test_user_views.py
 ```
 
 Testing the message model: 
 ```
-FLASK_ENV=production python -m unittest test_message_model.py
+python -m unittest test_message_model.py
 ```
 
 Testing message views: 
 ```
-FLASK_ENV=production python -m unittest test_message_views.py
+python -m unittest test_message_views.py
 ```
