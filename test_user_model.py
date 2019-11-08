@@ -64,7 +64,7 @@ class UserModelTestCase(TestCase):
 
     def tearDown(self):
         """Clear sample data after each test."""
-        
+
         User.query.delete()
         db.session.commit()
         Message.query.delete()
