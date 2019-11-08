@@ -89,19 +89,18 @@ class MessageViewTestCase(TestCase):
 
             self.assertEqual(resp_show.status_code, 200)
             self.assertIn(b"Hello", resp_show.data)
-    
+
     def test_delete_message(self):
         """Testing if can delete a message"""
-
 
         with self.client as c:
             with c.session_transaction() as sess:
                 sess[CURR_USER_KEY] = self.testuser.id
 
             resp = c.post("/messages/new", data={"text": "Hello"})
-            
+
             message_id = Message.query.filter(Message.user_id==self.testuser.id).one().id
-            
+
             before_delete = Message.query.all()
 
             self.assertEqual(len(before_delete), 1)
@@ -113,4 +112,3 @@ class MessageViewTestCase(TestCase):
             after_delete = Message.query.all()
 
             self.assertEqual(len(after_delete), 0)
-
