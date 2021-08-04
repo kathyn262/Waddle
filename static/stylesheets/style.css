@@ -188,6 +188,14 @@ nav + .container {
   margin-left: 20px;
 }
 
+.follow-btn { 
+  margin-left: 20px;
+}
+
+.unfollow-btn {
+  margin-left: 20px;
+}
+
 .timeline-image {
   border-radius: 48px;
   height: 48px;
