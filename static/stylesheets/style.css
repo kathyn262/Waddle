@@ -313,7 +313,7 @@ nav + .container {
 
 .user-card {
   width: 100%;
-  padding-bottom: 100%;
+  padding-bottom: 80%;
   border-radius: 5px;
   border: 1px solid #ccc;
   position: relative;
