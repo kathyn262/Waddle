@@ -180,6 +180,14 @@ nav + .container {
   box-shadow: 0 1px 1px rgba(136, 153, 166, 0.15);
 }
 
+.edit-profile-btn {
+  margin-left: 20px;
+}
+
+.delete-profile-btn {
+  margin-left: 20px;
+}
+
 .timeline-image {
   border-radius: 48px;
   height: 48px;
@@ -473,6 +481,10 @@ p.card-bio {
 
 .home-message-list {
   margin-top: 20px;
+}
+
+.post-btn {
+  width: 100%
 }
 
 /* ========================== Signup/Login */
