@@ -164,26 +164,3 @@ class MessageModelTestCase(TestCase):
                                     'user_id': 2, 
                                     'timestamp': datetime.utcnow()})
             self.assertEqual(q_len, len(q.messages))
-    
-    # def test_delete_msg_as_another(self):
-    #     """Testing to see if you can delete a message as another user."""
-    #     with app.test_client() as client:
-    #         with client.session_transaction() as sess:
-    #             sess[CURR_USER_KEY] = self.user.id
-    #         user = User.query.get_or_404(2)
-    #         new_msg = Message(text='whiskey3', user_id=2, timestamp=datetime.utcnow())
-    #         db.session.add(new_msg)
-    #         db.session.commit()
-
-    #         msg = Message.query.get_or_404(user.messages[0].id)
-    #         msg_len = len(user.messages)
-    #         # request.referrer = self.user
-    #         resp = client.post(f'messages/{msg.id}/delete')
-    #         # import pdb; pdb.set_trace()
-    #         # self.assertEqual(resp.status_code, 302)
-    #         # self.assertEqual(resp.location, "http://localhost/")
-    #         self.assertEqual(msg_len, len(user.messages))
-
-        # last test is very difficult to test without configuring the app itself
-        # rn if you go into the make new message page and change form action
-        # to delete a particular message, it'll actually delete 
