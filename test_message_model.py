@@ -1,23 +1,20 @@
+"""Message model tests."""
+
 import os
 from unittest import TestCase
 from models import db, User, Message, Follows
 from datetime import datetime
 
-# BEFORE we import our app, let's set an environmental variable
-# to use a different database for tests (we need to do this
-# before we import our app, since that will have already
-# connected to the database
+# using test database for tests
 
 os.environ['DATABASE_URL'] = "postgresql:///waddle-test"
+
 from app import app
-# Now we can import app
-# from seed import seed_data
-# Create our tables (we do this here, so we only create the tables
-# once for all tests --- in each test, we'll delete the data
-# and create fresh new clean test data
+
+# create tables once for all tests
+# in each test we delete the data and create new clean test data
 
 db.create_all()
-
 
 class MessageModelTestCase(TestCase):
     """Test for the Message model."""
