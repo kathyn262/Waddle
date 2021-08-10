@@ -17,8 +17,8 @@ from app import app, CURR_USER_KEY
 db.create_all()
 
 
-class MessageModelTestCase(TestCase):
-    """Test for the Message model."""
+class UserViewTestCase(TestCase):
+    """Test views for users."""
 
     def setUp(self):
         """Create test client, add sample data."""
