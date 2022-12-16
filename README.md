@@ -6,8 +6,8 @@ Unit and integration tests are written with the Python standard library unittest
 
 Waddle is [live on Heroku](https://waddle-waddle.herokuapp.com/).
 
-Test username: `pingu`  
-Test password: `pingu123`
+Test username: `testuser`  
+Test password: `testuser`
 
 ![Demo Gif](static/images/demo.gif)
 ![Edit Profile Form Screenshot](static/images/profile-edit-screenshot.png)
