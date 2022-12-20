@@ -4,7 +4,7 @@ Waddle is a Twitter clone built with Flask, server-side rendering, and Jinja tem
 
 Unit and integration tests are written with the Python standard library unittest module. Passwords are encrypted and stored in the database.  
 
-Waddle is [live on Heroku](https://waddle-waddle.herokuapp.com/).
+Waddle is [live on Render](https://waddle.onrender.com/).
 
 Test username: `testuser`  
 Test password: `testuser`
