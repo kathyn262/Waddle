@@ -6,3 +6,4 @@ Flask-WTF
 ipython
 psycopg2-binary
 email_validator
+gunicorn
