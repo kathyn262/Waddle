@@ -13,6 +13,10 @@ Test password: `testuser`
 ![Edit Profile Form Screenshot](static/images/profile-edit-screenshot.png)
 ![404 Page Screenshot](static/images/404-screenshot.png)
 
+## Table Of Contents
+- [Installation](https://github.com/kathyn138/Waddle#installation)
+- [Testing](https://github.com/kathyn138/Waddle#testing)
+
 ## Installation 
 
 These steps should be done sequentially. 
