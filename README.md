@@ -16,6 +16,7 @@ Test password: `testuser`
 ## Table Of Contents
 - [Installation](https://github.com/kathyn138/Waddle#installation)
 - [Testing](https://github.com/kathyn138/Waddle#testing)
+- [Technologies](https://github.com/kathyn138/Waddle#technologies)
 
 ## Installation 
 
@@ -64,3 +65,10 @@ Testing message views:
 ```
 python -m unittest test_message_views.py
 ```
+
+## Technologies
+
+- Flask
+- HTML/CSS
+- Jinja
+- Python
