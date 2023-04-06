@@ -73,11 +73,13 @@
           </form>
 
           {% else %}
-          <form method="POST" action="/messages/{{ msg.id }}/like">
-            <a href="#" onclick="this.parentNode.submit()">
-              <i class="far fa-star"></i>
-            </a>
-          </form>
+          <!-- <form method="POST" action="/messages/{{ msg.id }}/like"> -->
+          <!-- <a href="#" onclick="this.parentNode.submit()"> -->
+          <!-- <a href="#" ></a> -->
+          <a  id="huh" onclick="a('{{ msg.id }}')">
+
+            <i class="far fa-star" >aaaa</i>
+          </a>
           {% endif %}
         </div>
       </li>
@@ -86,4 +88,19 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+  console.log('??????')
+
+function a(id) {
+  $('#huh').on('click', function (e) {
+      console.log('here ??')
+      $.ajax({
+        type: 'POST',
+        url : `/messages/${id}/like`
+      });
+    })
+}
+
+</script>
 {% endblock %}
