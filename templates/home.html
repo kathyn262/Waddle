@@ -66,11 +66,14 @@
           <p>{{ msg.text }}</p>
 
           {% if msg in g.user.liked_messages %}
-          <form method="POST" action="/messages/{{ msg.id }}/unlike">
+          <a class="to-unlike" id="{{ msg.id }}">
+            <i class="fas fa-star"></i>
+          </a>
+          <!-- <form method="POST" action="/messages/{{ msg.id }}/unlike">
             <a href="#" onclick="this.parentNode.submit()">
               <i class="fas fa-star"></i>
             </a>
-          </form>
+          </form> -->
 
           {% else %}
           <a class="to-like" id="{{ msg.id }}">
@@ -86,18 +89,38 @@
 </div>
 
 <script type="text/javascript">
+//todo: fix bug of like/unlike back to back
+//todo: add this to every page that has the star
+// prob have to do js file separate? 
   function likeMessage() {
     $('.to-like').on('click', function (e) {
-      let id = $(this).attr('id');
+      const id = $(this).attr('id');
       console.log('here ??', id)
       $.ajax({
         type: 'POST',
         url: `/messages/${id}/like`
       });
-      $(this).html(`<i class="fas fa-star"></i>`);
+      $(this).replaceWith(`<a class="to-unlike" id="${id}">
+            <i class="fas fa-star"></i>
+          </a>`);
     });
   }
-  $(function () { likeMessage(); })
+
+  function unlikeMessage() {
+    $('.to-unlike').on('click', function (e) {
+      const id = $(this).attr('id');
+      console.log('here ??', id)
+      $.ajax({
+        type: 'POST',
+        url: `/messages/${id}/unlike`
+      });
+      $(this).replaceWith(`<a class="to-like" id="${id}">
+            <i class="far fa-star"></i>
+          </a>`);
+    })
+  }
+
+  $(function () { likeMessage(); unlikeMessage(); })
 
 
 
