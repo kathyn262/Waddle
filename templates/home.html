@@ -73,12 +73,8 @@
           </form>
 
           {% else %}
-          <!-- <form method="POST" action="/messages/{{ msg.id }}/like"> -->
-          <!-- <a href="#" onclick="this.parentNode.submit()"> -->
-          <!-- <a href="#" ></a> -->
-          <a  id="huh" onclick="a('{{ msg.id }}')">
-
-            <i class="far fa-star" >aaaa</i>
+          <a class="to-like" id="{{ msg.id }}">
+            <i class="far fa-star"></i>
           </a>
           {% endif %}
         </div>
@@ -90,17 +86,20 @@
 </div>
 
 <script type="text/javascript">
-  console.log('??????')
-
-function a(id) {
-  $('#huh').on('click', function (e) {
-      console.log('here ??')
+  function likeMessage() {
+    $('.to-like').on('click', function (e) {
+      let id = $(this).attr('id');
+      console.log('here ??', id)
       $.ajax({
         type: 'POST',
-        url : `/messages/${id}/like`
+        url: `/messages/${id}/like`
       });
-    })
-}
+      $(this).html(`<i class="fas fa-star"></i>`);
+    });
+  }
+  $(function () { likeMessage(); })
+
+
 
 </script>
 {% endblock %}
