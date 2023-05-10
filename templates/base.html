@@ -5,64 +5,97 @@
   <meta charset="UTF-8">
   <title>Waddle</title>
 
-  <link rel="stylesheet"
-        href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
   <script src="https://unpkg.com/jquery"></script>
   <script src="https://unpkg.com/popper"></script>
   <script src="https://unpkg.com/bootstrap"></script>
 
-  <link rel="stylesheet"
-        href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
   <link rel="stylesheet" href="/static/stylesheets/style.css">
   <link rel="shortcut icon" href="/static/favicon.png">
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
-<nav class="navbar navbar-expand">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a href="/" class="navbar-brand">
-        <img src="/static/images/waddle-logo.png" alt="logo">
-        <span>Waddle</span>
-      </a>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-      {% if request.endpoint != None %}
-      <li>
-        <form class="navbar-form navbar-right" action="/users">
-          <input name="q" class="form-control" placeholder="Search Waddle" id="search">
-          <button class="btn btn-default">
-            <span class="fa fa-search"></span>
-          </button>
-        </form>
-      </li>
-      {% endif %}
-      {% if not g.user %}
-      <li><a href="/signup">Sign up</a></li>
-      <li><a href="/login">Log in</a></li>
-      {% else %}
-      <li>
-        <a href="/users/{{ g.user.id }}">
-          <img src="{{ g.user.image_url }}" alt="{{ g.user.username }}">
+  <nav class="navbar navbar-expand">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand">
+          <img src="/static/images/waddle-logo.png" alt="logo">
+          <span>Waddle</span>
         </a>
-      </li>
-      <li><a href="/messages/new">Post a Waddle</a></li>
-      <li><a href="/logout">Log out</a></li>
-      {% endif %}
-    </ul>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        {% if request.endpoint != None %}
+        <li>
+          <form class="navbar-form navbar-right" action="/users">
+            <input name="q" class="form-control" placeholder="Search Waddle" id="search">
+            <button class="btn btn-default">
+              <span class="fa fa-search"></span>
+            </button>
+          </form>
+        </li>
+        {% endif %}
+        {% if not g.user %}
+        <li><a href="/signup">Sign up</a></li>
+        <li><a href="/login">Log in</a></li>
+        {% else %}
+        <li>
+          <a href="/users/{{ g.user.id }}">
+            <img src="{{ g.user.image_url }}" alt="{{ g.user.username }}">
+          </a>
+        </li>
+        <li><a href="/messages/new">Post a Waddle</a></li>
+        <li><a href="/logout">Log out</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    {% for category, message in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+
+    {% block content %}
+    {% endblock %}
+
   </div>
-</nav>
-<div class="container">
-  {% for category, message in get_flashed_messages(with_categories=True) %}
-  <div class="alert alert-{{ category }}">{{ message }}</div>
-  {% endfor %}
 
-  {% block content %}
-  {% endblock %}
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    /*
+    * attach event listeners for liking/unliking messages
+    * includes dynamically changed elements
+    */
+    function likeMessage() {
+      $('.message-area').on('click', 'a.to-like', function (e) {
+        const id = $(this).attr('id');
+        console.log('here in like', id)
+        $.ajax({
+          type: 'POST',
+          url: `/messages/${id}/like`
+        });
+        $(this).replaceWith(`<a class="to-unlike" id="${id}">
+              <i class="fas fa-star"></i>
+            </a>`);
+      });
+    }
 
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-
+    function unlikeMessage() {
+      $('.message-area').on('click', 'a.to-unlike', function (e) {
+        const id = $(this).attr('id');
+        console.log('here in unlike', id)
+        $.ajax({
+          type: 'POST',
+          url: `/messages/${id}/unlike`
+        });
+        $(this).replaceWith(`<a class="to-like" id="${id}">
+              <i class="far fa-star"></i>
+            </a>`);
+      })
+    }
+    $(function () { likeMessage(); unlikeMessage(); })
+  </script>
 </body>
+
 </html>

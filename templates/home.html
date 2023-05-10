@@ -69,11 +69,6 @@
           <a class="to-unlike" id="{{ msg.id }}">
             <i class="fas fa-star"></i>
           </a>
-          <!-- <form method="POST" action="/messages/{{ msg.id }}/unlike">
-            <a href="#" onclick="this.parentNode.submit()">
-              <i class="fas fa-star"></i>
-            </a>
-          </form> -->
 
           {% else %}
           <a class="to-like" id="{{ msg.id }}">
@@ -87,41 +82,4 @@
   </div>
 
 </div>
-
-<script type="text/javascript">
-//todo: add this to every page that has the star
-// prob have to do js file separate? 
-  function likeMessage() {
-    $('.message-area').on('click', 'a.to-like', function (e) {
-      const id = $(this).attr('id');
-      console.log('here in like', id)
-      $.ajax({
-        type: 'POST',
-        url: `/messages/${id}/like`
-      });
-      $(this).replaceWith(`<a class="to-unlike" id="${id}">
-            <i class="fas fa-star"></i>
-          </a>`);
-    });
-  }
-
-  function unlikeMessage() {
-    $('.message-area').on('click', 'a.to-unlike', function (e) {
-      const id = $(this).attr('id');
-      console.log('here in unlike', id)
-      $.ajax({
-        type: 'POST',
-        url: `/messages/${id}/unlike`
-      });
-      $(this).replaceWith(`<a class="to-like" id="${id}">
-            <i class="far fa-star"></i>
-          </a>`);
-    })
-  }
-
-  $(function () { likeMessage(); unlikeMessage(); })
-
-
-
-</script>
 {% endblock %}
