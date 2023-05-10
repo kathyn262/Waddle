@@ -66,18 +66,14 @@
           <p>{{ msg.text }}</p>
 
           {% if msg in g.user.liked_messages %}
-          <form method="POST" action="/messages/{{ msg.id }}/unlike">
-            <a href="#" onclick="this.parentNode.submit()">
-              <i class="fas fa-star"></i>
-            </a>
-          </form>
+          <a class="to-unlike" id="{{ msg.id }}">
+            <i class="fas fa-star"></i>
+          </a>
 
           {% else %}
-          <form method="POST" action="/messages/{{ msg.id }}/like">
-            <a href="#" onclick="this.parentNode.submit()">
-              <i class="far fa-star"></i>
-            </a>
-          </form>
+          <a class="to-like" id="{{ msg.id }}">
+            <i class="far fa-star"></i>
+          </a>
           {% endif %}
         </div>
       </li>
