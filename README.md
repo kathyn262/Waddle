@@ -71,4 +71,5 @@ python -m unittest test_message_views.py
 - Flask
 - HTML/CSS
 - Jinja
+- jQuery
 - Python
