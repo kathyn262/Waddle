@@ -148,6 +148,19 @@ class User(db.Model):
 
         return False
 
+    @classmethod
+    def change_password(cls, username, curr_pwd, new_pwd_init, new_pwd_confirm):
+        if new_pwd_init != new_pwd_confirm:
+            return False
+        else:
+            auth_user = User.authenticate(cls, username, curr_pwd)
+            if auth_user is True:
+                hashed_pwd = bcrypt.generate_password_hash(new_pwd_init).decode('UTF-8')
+                auth_user.password = hashed_pwd
+                db.session.commit()
+            else:
+                return False
+
 
 class Message(db.Model):
     """An individual message ("warble")."""

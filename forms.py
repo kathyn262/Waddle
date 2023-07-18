@@ -35,3 +35,11 @@ class EditProfileForm(FlaskForm):
     location = StringField('Location')
     bio = TextAreaField('Bio')
     password = PasswordField('Password', validators=[Length(min=6)])
+
+
+class ChangePasswordForm(FlaskForm):
+    """Change password form."""
+
+    curr_password = PasswordField('Current Password', validators=[Length(min=6)])
+    new_password_init = PasswordField('New Password', validators=[Length(min=6)])
+    new_password_confirm = PasswordField('New Password', validators=[Length(min=6)])
