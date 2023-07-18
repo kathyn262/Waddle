@@ -17,6 +17,7 @@ Test password: `testuser`
 - [Installation](https://github.com/kathyn138/Waddle#installation)
 - [Testing](https://github.com/kathyn138/Waddle#testing)
 - [Technologies](https://github.com/kathyn138/Waddle#technologies)
+- [Future Implementations](https://github.com/kathyn138/Waddle#future-implementations)
 
 ## Installation 
 
@@ -73,3 +74,6 @@ python -m unittest test_message_views.py
 - Jinja
 - jQuery
 - Python
+
+## Future Implementations
+- Add loading spinners
