@@ -246,6 +246,10 @@ def profile():
 def delete_user():
     """Delete user."""
 
+    if g.user.username == "testuser":
+        flash("Cannot delete test user.", "danger")
+        return redirect("/")
+
     if CURR_USER_KEY not in session:
         flash("Access unauthorized.", "danger")
         return redirect("/")
