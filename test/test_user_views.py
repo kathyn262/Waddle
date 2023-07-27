@@ -4,12 +4,11 @@ import os
 from unittest import TestCase
 from models import db, User, Message, Follows
 from datetime import datetime
+from app import app, CURR_USER_KEY
 
 # using test database for tests
 
 os.environ['DATABASE_URL'] = "postgresql:///waddle-test"
-
-from app import app, CURR_USER_KEY
 
 # create tables once for all tests
 # in each test we delete the data and create new clean test data
