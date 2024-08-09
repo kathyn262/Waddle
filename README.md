@@ -28,7 +28,7 @@ Setting up the Python virtual environment
 ```
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 Setting up the production and test database
