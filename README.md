@@ -21,9 +21,7 @@ Test password: `testuser`
 
 ## Installation 
 
-These steps should be done sequentially. 
-
-Setting up the Python virtual environment
+Setting up the Python virtual environment:
 
 ```
 python3 -m venv venv
@@ -31,7 +29,7 @@ source venv/bin/activate
 python3 -m pip install -r requirements.txt
 ```
 
-Setting up the production and test database
+Setting up the production and test database:
 
 ```
 createdb waddle
