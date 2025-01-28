@@ -1,4 +1,4 @@
-"""Seed database with sample data from CSV files."""
+"""Seed database with sample data."""
 
 from csv import DictReader
 from app import db
