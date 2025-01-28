@@ -36,4 +36,4 @@ traitlets==5.7.1
 wcwidth==0.2.5
 Werkzeug==2.2.3
 WTForms==2.2.1
-gunicorn==19.7.1
+gunicorn==22.0.0
