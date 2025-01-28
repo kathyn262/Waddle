@@ -42,8 +42,8 @@ class MessageViewTestCase(TestCase):
         Message.query.delete()
         db.session.commit()
 
-    def test_add_message(self):
-        """Testing if can add a message"""
+    def test_create_message(self):
+        """Testing if can create a message"""
 
         # Since we need to change the session to mimic logging in,
         # we need to use the changing-session trick:

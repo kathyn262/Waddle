@@ -129,8 +129,8 @@ class UserViewTestCase(TestCase):
             self.assertEqual(resp.status_code, 302)
             self.assertEqual(len(user.messages), msg_len - 1)
 
-    def test_logged_out_add_msg(self):
-        """Testing to see if can add message when logged out."""
+    def test_logged_out_create_msg(self):
+        """Testing to see if can create message when logged out."""
         
         with app.test_client() as client:
             resp = client.post('/messages/new', 
@@ -150,8 +150,8 @@ class UserViewTestCase(TestCase):
             self.assertEqual(resp.status_code, 302)
             self.assertEqual(resp.location, "http://localhost/")
     
-    def test_add_msg_as_another(self):
-        """Testing to see if you can add message as another user."""
+    def test_create_msg_as_another(self):
+        """Testing to see if you can create message as another user."""
         
         with app.test_client() as client:
             with client.session_transaction() as sess:
