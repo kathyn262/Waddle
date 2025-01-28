@@ -4,13 +4,13 @@ from wtforms.validators import DataRequired, Email, Length
 
 
 class MessageForm(FlaskForm):
-    """Form for adding/editing messages."""
+    """Create/edit messages form."""
 
     text = TextAreaField('text', validators=[DataRequired()])
 
 
 class UserAddForm(FlaskForm):
-    """Form for adding users."""
+    """Add new user form."""
 
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('E-mail', validators=[DataRequired(), Email()])

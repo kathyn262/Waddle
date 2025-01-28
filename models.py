@@ -28,8 +28,6 @@ class Follows(db.Model):
 
 
 class User(db.Model):
-    """User in the system."""
-
     __tablename__ = 'users'
 
     id = db.Column(
@@ -163,7 +161,7 @@ class User(db.Model):
 
 
 class Message(db.Model):
-    """An individual message ("warble")."""
+    """An individual message."""
 
     __tablename__ = 'messages'
 
@@ -211,10 +209,5 @@ class Like(db.Model):
 
 
 def connect_db(app):
-    """Connect this database to provided Flask app.
-
-    You should call this in your Flask app.
-    """
-
     db.app = app
     db.init_app(app)
