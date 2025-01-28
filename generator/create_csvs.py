@@ -1,5 +1,4 @@
-"""Generate CSVs of random data for Waddle.
-"""
+"""Generate CSVs of random data for Waddle."""
 
 import csv
 from random import choice, randint, sample
